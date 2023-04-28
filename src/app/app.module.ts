@@ -21,7 +21,7 @@ import { ReadNotesComponent } from './Reader/Notes/readnotescomponent';
     LoginComponent,
     RegisterComponent,
     NotesComponent,
-    ReadNotesComponent
+    ReadNotesComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,6 @@ import { NotesComponent } from './Owner/Notes/Create/createnotes.component';
 //reader
 import { ReadNotesComponent } from './Reader/Notes/readnotescomponent';
 
-
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login',component: LoginComponent},

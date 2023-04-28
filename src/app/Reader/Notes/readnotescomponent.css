@@ -1,0 +1,63 @@
+.navbar{
+    background-color: #6ce5b7;
+}
+.navbar_{
+    padding: 40px;
+}
+.navbar_ .d-flex{
+    width: 30%;
+    margin: 0 65%;
+   }
+.button_search{
+    background-color: #6ce5b7;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 40%;
+    transition: all 0.3s ease-in-out;
+}
+.button_search:hover {
+    background-color: #5bd2a8;
+    transform: translateY(-3px);
+}
+.button_more{
+    background-color: #6ce5b7;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.button_more:hover {
+    background-color: #5bd2a8;
+}
+.container-cards{
+    padding: 1rem;
+    margin: 0 5%;
+}
+.card{
+    text-align: center;
+    margin-top: 2rem;
+    box-shadow:  0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out; /*agregamos transición*/
+}
+
+.card:hover{
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); /*aumentamos el valor de box-shadow*/
+    transform: scale(1.03); /*agregamos escala*/
+}
+.card-text {
+    height: 6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+  }
+  
+  

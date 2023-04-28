@@ -1,0 +1,29 @@
+<div >
+    <nav class="navbar">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Gestion Notas</span>
+          <button type="button" class="btn btn-success">Sign off</button>
+        </div>
+      </nav>
+      <nav class="navbar_">
+        <div class="container-fluid">
+          <a class="navbar-brand"></a>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchInput" [(ngModel)]="searchId">
+            <button class="button_search" type="submit" (click)="searchNote()">Search</button>
+          </form>
+        </div>
+      </nav>
+      <div class="container-cards">
+          <div class="row">
+            <div class="col" *ngFor="let note of filteredNotes">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h3 class="card-title">{{ note.titulo }}</h3><hr>
+                  <p class="card-text">{{ note.descripcion }}</p>
+                  <button type="button" class="button_more" (click)="getDetails(note)">Leer Más</button>
+               </div>
+            </div>
+         </div>
+    </div>
+</div>
