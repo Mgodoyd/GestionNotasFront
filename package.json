@@ -20,8 +20,11 @@
     "@angular/router": "^15.2.0",
     "@ng-bootstrap/ng-bootstrap": "^14.1.0",
     "@popperjs/core": "^2.11.6",
+    "angular-2-local-storage": "^3.0.2",
     "bootstrap": "^5.3.0-alpha3",
+    "jwt-decode": "^3.1.2",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.7.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },
