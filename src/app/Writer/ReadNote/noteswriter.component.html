@@ -1,0 +1,49 @@
+<div >
+    <nav class="navbar">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Gestion Notas</span>
+          <button type="button" class="btn btn-outline-success" (click)="logoutUser()">Sign off</button>
+        </div>
+      </nav>
+      <nav class="navbar_">
+        <div class="container-fluid">
+          <a class="navbar-brand"></a>
+          <form class="d-flex" role="search">
+            <button [disabled]="!canCreate" class="button_create" type="submit">Crear</button>
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchInput" [(ngModel)]="searchId">
+            <button class="button_search" type="submit" (click)="searchNote()">Search</button>
+          </form>
+        </div>
+      </nav>
+      <div class="container-cards">
+          <div>
+            <div>
+                <table class="table">
+                    <thead class="table-color">
+                      <tr>
+                        <th></th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>States</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let note of filteredNotes">
+                      <tr>
+                        <td><input type="checkbox" name="check" value="check" class="checkbox"></td>
+                        <td>{{note.titulo}}</td>
+                        <td class="content">{{note.descripcion}}</td>
+                        <td>
+                            <select [(ngModel)]="note.Estatus" [ngStyle]="getStatusStyles(note.Estatus)">
+                              <option *ngFor="let estados of states" [value]="estados.id" class="optionstatus">{{ estados.nombre }}</option>
+                            </select>
+                          </td>  
+                        <td class="row-container">
+                          <button [disabled]="!canUpdate" class="button_update">Actualizar</button>
+                            <button [disabled]="!canDelete" class="button_delete">Eliminar</button>
+                        </td>                        
+                    </tbody>
+                  </table>
+         </div>
+    </div>
+</div>

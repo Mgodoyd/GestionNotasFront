@@ -37,7 +37,6 @@ export class LoginComponent {
         map((response) => {
           // Extrae el rol del usuario de la respuesta
           this.rol = response?.rol_id ?? 0;
-          console.log(this.rol);
           this.token = response?.access_token ?? '';
 
           if (this.token) {
@@ -49,7 +48,6 @@ export class LoginComponent {
           const expiraEnString = localStorage.getItem('expiraEn');
           if (expiraEnString) {
             const expiraEn = parseInt(expiraEnString, 10);
-            console.log(expiraEn);
             // hacer algo con el valor numérico expiraEn
           }
           
@@ -58,6 +56,8 @@ export class LoginComponent {
           console.log(decodedToken);*/
 
              // Actualiza el valor de this.rol después de obtener la información del token
+
+
         this.updateUserRole();
         console.log(response);
           return response;
@@ -79,7 +79,7 @@ export class LoginComponent {
           this.router.navigate(['/dashboard']);
           this.showWelcomeToast(2);
         } else if (this.rol == 3) {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['writer/notes']);
           this.showWelcomeToast(3);
         } else if (this.rol == 4) {
           this.router.navigate(['reader/notes']);

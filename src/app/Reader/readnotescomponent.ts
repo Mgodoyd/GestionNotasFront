@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { GLOBAL } from 'src/app/Services/Global';
 import { Note } from 'src/app/Models/Note';
 import Swal from 'sweetalert2';
+import { Logout } from 'src/app/Services/Logout';
 
 @Component({
   selector: 'app-readnotes',
@@ -16,9 +17,11 @@ export class ReadNotesComponent {
   public searchId: string;
   public filteredNotes: Note[] = this.notes;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private logout: Logout) {
     this.title = 'Lector';
     this.searchId = '';
+    this.logoutUser = this.logoutUser.bind(this);// Bind para que el this de logoutUser sea el de la clase
+   
   }
 
   ngOnInit(): void {
@@ -73,4 +76,9 @@ export class ReadNotesComponent {
       this.filteredNotes = this.notes;
     }
   }
+
+   logoutUser() {
+    this.logout.logout();
+  }
 }
+
