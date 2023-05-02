@@ -18,6 +18,7 @@ export class LoginComponent {
   public password = '';
   public rol = 0;
   public token = '';
+  public id = 0;
 
   constructor(private http: HttpClient, private router: Router,) {
     this.title = 'Login';
@@ -37,6 +38,7 @@ export class LoginComponent {
         map((response) => {
           // Extrae el rol del usuario de la respuesta
           this.rol = response?.rol_id ?? 0;
+          this.id = response?.id ?? 0;
           this.token = response?.access_token ?? '';
 
           if (this.token) {
@@ -45,11 +47,12 @@ export class LoginComponent {
             localStorage.setItem('expiraEn', expiraEn.valueOf().toString());
           }
           
-          const expiraEnString = localStorage.getItem('expiraEn');
+          localStorage.setItem('id', this.id.toString());
+        /*  const expiraEnString = localStorage.getItem('expiraEn');
           if (expiraEnString) {
             const expiraEn = parseInt(expiraEnString, 10);
             // hacer algo con el valor numérico expiraEn
-          }
+          }*/
           
           // También podrías decodificar el token usando una biblioteca como jwt_decode y almacenar los datos en localStorage si lo necesitas.
          /* const decodedToken = jwt_decode(this.token);

@@ -27,20 +27,41 @@
 .button_create{
     background-color: #6ce5b7;
     color: white;
+    position: relative;
     border: none;
     margin-right: 1rem;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     font-weight: 600;
-    cursor: pointer;
+    cursor: not-allowed;
     width: 40%;
     transition: all 0.3s ease-in-out;
 }
-.button_create:hover {
+/*.button_create:hover {
     background-color: #5bd2a8;
     transform: translateY(-3px);
-}
+}*/
+.button_create::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    width: 9rem;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .button_create:hover::before {
+    opacity: 1;
+  }
 .button_more{
     background-color: #6ce5b7;
     color: white;
@@ -90,28 +111,45 @@
     width: 0.5rem;
  }
  .content{
-    width: 35rem;
-  }
-.checkbox  {
-    cursor: pointer;
-    width: 1rem;
-    height: 1rem;
+    width: 38rem;
   }
 .optionstates{
     border-radius: 1rem;
   }
-
-.button_update{
+  .button_update{
     background-color: #4c80fc;
     color: white;
     border: none;
     margin-right: 1rem;
     border-radius: 0.5rem;
-    padding: 0.5rem 5rem 0.5rem 2.5rem;
-    font-size: 15px;
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    width: 30%;
-    display: inline-block;
+    width: 40%;
+    transition: all 0.3s ease-in-out;
+}
+
+.button_update.disabled{
+    cursor: not-allowed;
+    background-color: #d3d3d3;
+}
+
+.button_update.disabled::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 1;
+    width: 9rem;
+    transition: opacity 0.3s;
+    pointer-events: none;
 }
 .button_update:hover {
     background-color: #1212af;
@@ -119,14 +157,76 @@
 .button_delete{
     background-color: #ff3c3c;
     color: white;
+    position: relative;
     border: none;
     border-radius: 0.5rem;
-    padding: 0.5rem 5rem 0.5rem 3rem;
+    
+    padding: 0.5rem 7rem 0.5rem 4rem;
     font-size: 15px;
     cursor: pointer;
     width: 30%;
     display: inline-block;
 }
-.button_delete:hover {
+/*.button_delete:hover {
     background-color: #9b1212;
+}*/
+.button_delete::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    width: 9rem;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .button_delete:hover::before {
+    opacity: 1;
+  }
+  select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance:none;
+    height: 2rem;
+    outline:0;
+    box-shadow:none;
+    border:0!important;
+    border-radius: 20px;
+    flex: 1;
+    padding: 0rem;
+    color:#fff;
+    cursor:pointer;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+}
+option {
+    text-align: center;
+    border-radius: 20px;
+  }
+ select::-ms-expand {
+    display: none;
+ }
+ .select {
+    position: relative;
+    border-radius: 20px;
+    display: flex;
+    width: 9em;
+    height: 2rem;
+    line-height: 3;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: .25em;
+ }
+.disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+    background-color: #7d7d7d;
 }

@@ -17,6 +17,7 @@ export class Interceptor implements HttpInterceptor {
       if (tokenDecoded && tokenDecoded.hasOwnProperty('scopes')) {
         this.scopes = Array.isArray(tokenDecoded.scopes) ? tokenDecoded.scopes : tokenDecoded.scopes.split(' ');
         console.log('Scopes:', this.scopes);
+        localStorage.setItem('scopes', JSON.stringify(this.scopes));
       } else {
         console.log('Token sin scopes');
       }

@@ -13,6 +13,8 @@ export class Logout {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiraEn');
+    localStorage.removeItem('scopes');
+    localStorage.removeItem('id');
     // Redirigimos al usuario a la página de inicio de sesión
     this.router.navigate(['/']);
   }

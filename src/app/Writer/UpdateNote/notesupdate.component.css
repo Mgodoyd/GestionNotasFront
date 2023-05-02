@@ -1,0 +1,132 @@
+.navbar{
+    background-color: #6ce5b7;
+}
+.navbar_{
+    padding: 40px;
+}
+.navbar_ .d-flex{
+    width: 30%;
+    margin: 0 65%;
+}
+.container-from{
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.2);
+    border-radius: 1rem;
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.form-label{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 3rem;
+    margin-top: 2rem;
+}
+.form-control{
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+#FormControlInput1{
+    width: 80%;
+    margin-top: 4rem;
+    margin-left: -3.5rem;
+}
+#FormControlTextarea1{
+    width: 95%;
+    height: 20rem;
+}
+ select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance:none;
+    height: 3rem;
+    outline:0;
+    margin-left: -2rem;
+    box-shadow:none;
+    border:0!important;
+    flex: 1;
+    padding: 0rem;
+    color:#000000;
+    cursor:pointer;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    margin-top: 4.2rem;
+    height: 3em;
+    line-height: 3;
+    background: #5c6664;
+    overflow: hidden;
+    border-radius: .25em;
+ }
+ .select::after {
+    content: '\25BC';
+    position: absolute;
+    margin-top: -0.4rem;
+    right: 0;
+    padding: 0 1em;
+    background: #45ca78;
+    cursor:pointer;
+    pointer-events:none;
+    transition:.25s all ease;
+ }
+ .select:hover::after {
+    color: #ffffff;
+ }
+option {
+    text-align: center;
+  }
+ select::-ms-expand {
+    display: none;
+ }
+ .select {
+    position: relative;
+    display: flex;
+    width: 9em;
+    height: 2rem;
+    line-height: 3;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: .25em;
+ }
+ #from-container{
+    display: flex;
+ }
+ .button_guardar{
+    margin-left: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 10rem;
+    height: 3rem;
+    background-color: #4c80fc;
+    border-radius: 1rem;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+ }
+    .button_guardar:hover{
+        background-color: #1212af;
+    }
+ .button_regresar{
+    margin-left: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 10rem;
+    height: 3rem;
+    background-color: #23d349;
+    border-radius: 1rem;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+ }
+ .button_regresar:hover{
+    background-color: #1a9e2a;
+ }
+ 

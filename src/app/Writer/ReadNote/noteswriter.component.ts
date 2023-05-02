@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { Logout } from 'src/app/Services/Logout';
 import { Observable, map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Interceptor } from 'src/app/AuthService/Interceptor';
+
 
 @Component({
     selector: 'writer-readnotes',
@@ -22,20 +22,27 @@ export class ReadWirterComponent {
         {id: 2, nombre: 'En proceso'},
         {id: 3, nombre: 'Finalizado'}
       ];
-     public canCreate: boolean;
-     public canUpdate: boolean;
-     public canDelete: boolean;
+     public canCreate: boolean = false;
+     public canUpdate: boolean = false;
+     public canDelete: boolean = false;
     
-    constructor(private logout: Logout,private http: HttpClient, private interceptor: Interceptor) {
+    constructor(private logout: Logout,private http: HttpClient) {
         this.title = 'Escritor';
         this.searchId = '';
         this.logoutUser = this.logoutUser.bind(this);// Bind para que el this de logoutUser sea el de la clase
-        this.canCreate = this.interceptor.scopes.some(scope => scope.toLowerCase() === 'store');
-        this.canUpdate = this.interceptor.scopes.some(scope => scope.toLowerCase() === 'update');
-        this.canDelete = this.interceptor.scopes.some(scope => scope.toLowerCase() === 'destroy');
-        console.log(this.canCreate);
-        console.log(this.canUpdate);
-        console.log(this.canDelete);
+        const scopes = JSON.parse(localStorage.getItem('scopes') || '[]');
+        console.log('Scopes:', scopes); 
+        if(scopes.length > 0){
+            this.canCreate = scopes.includes('store');
+            this.canUpdate = scopes.includes('update');
+            this.canDelete = scopes.includes('destroy');
+    
+            console.log(this.canCreate);
+            console.log(this.canUpdate);
+            console.log(this.canDelete);
+        }
+
+       
     }
 
     ngOnInit(): void {
@@ -52,8 +59,10 @@ export class ReadWirterComponent {
             Authorization: 'Bearer ' + localStorage.getItem('token'),
           }),
         };
+        const id= localStorage.getItem('id');
+        console.log(localStorage.getItem('id'));
         // Usa el operador pipe y la función map para transformar la respuesta HTTP
-        return this.http.get(GLOBAL.url + 'notes', httpOptions).pipe(
+        return this.http.get(GLOBAL.url + 'notes/' + id + '/users', httpOptions).pipe(
           map((response: any) => response.data)
         );
       }
@@ -92,7 +101,13 @@ export class ReadWirterComponent {
             return {};
         }
       }
+
+     
+        
       
+      deletenote(){
+        console.log('no puedes eliminar')
+      }
     logoutUser() {
         this.logout.logout();
       }

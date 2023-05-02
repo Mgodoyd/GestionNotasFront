@@ -17,6 +17,7 @@ import { ReadNotesComponent } from './Reader/readnotescomponent';
 
 //writer
 import { ReadWirterComponent } from './Writer/ReadNote/noteswriter.component';
+import { NotesUpdateComponent } from './Writer/UpdateNote/notesupdate.component';
 
 //error 404
 import { ErrorComponent } from './Erro404/error.component';
@@ -37,7 +38,8 @@ import { NoautenticadoComponent } from './Noautenticado/noautenticado.component'
     ReadNotesComponent,
     ErrorComponent,
     NoautenticadoComponent,
-    ReadWirterComponent
+    ReadWirterComponent,
+    NotesUpdateComponent
   ],
   imports: [
     BrowserModule,

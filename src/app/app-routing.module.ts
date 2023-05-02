@@ -12,6 +12,7 @@ import { ReadNotesComponent } from './Reader/readnotescomponent';
 
 //writer
 import { ReadWirterComponent } from './Writer/ReadNote/noteswriter.component';
+import { NotesUpdateComponent } from './Writer/UpdateNote/notesupdate.component';
 
 //error 404
 import { ErrorComponent } from './Erro404/error.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'reader/notes',component: ReadNotesComponent,canActivate: [AuthGuard] },
   //Escritor
   { path: 'writer/notes',component: ReadWirterComponent,canActivate: [AuthGuard] },
+  { path: 'update/:titulo',component: NotesUpdateComponent,canActivate: [AuthGuard]},
 
   { path: 'unauthorized', component: NoautenticadoComponent},
   { path: '**', component: ErrorComponent }
