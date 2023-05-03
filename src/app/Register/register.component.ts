@@ -29,7 +29,7 @@ import { User } from "../Models/User";
             this.user = new User(0, '', '', 0, 0, '');
         }
 
-        onSubmit(): void {
+        onSubmit(): void { // Enviar el formulario
             if (!this.isValidForm()) {
                 return;
             }
@@ -42,25 +42,22 @@ import { User } from "../Models/User";
             .pipe(
               map((response) => {
                 console.log(response);
+                const token = response.data.token; // aquí se obtiene el token del objeto "data" dentro de la respuesta
+
+                console.log('Token-verify:', token); // se muestra el token para verificar que haya sido recibido correctamente
                 Swal.fire({
                   icon: 'success',
                   title: 'Bienvenido',
-                  text: 'Registrado con éxito. Verifica  tu cuenta.',
-                  footer: '<a>Click aqui</a>'
+                  text: 'Registrado con éxito. Verifica tu cuenta.',
+                  showCancelButton: true,
+                  cancelButtonText: 'Después', 
+                 cancelButtonColor: '#ff0000', 
+                  confirmButtonText: 'Verificar', 
+                }).then((result) => {
+                  if (result.isConfirmed) { // Verifica si se ha hecho clic en el botón 
+                    this.verifyEmail(token); // Llama a la función para verificar el correo electrónico
+                  }
                 });
-          
-                const token = response.token; // aquí se asigna el token a una variable adecuada
-                console.log('Token-verify:', token); // se muestra el token para verificar que haya sido recibido correctamente
-
-                this.user.identificador = response.identificador;
-                this.user.nombre = response.nombre;
-                this.user.correo = response.correo;
-                this.user.rol = response.rol;
-                this.user.es_verificado = response.es_verificado;
-                this.user.token = response.token;
-            
-                console.log('User:', this.user); // mostramos los valores de la instancia User en la consola
-                console.log('Token-verify:', this.user.token); // mostramos el token para verificar que haya sido recibido correctamente
                   
                 return response;
               }),
@@ -77,9 +74,9 @@ import { User } from "../Models/User";
             .subscribe();
         }
         
-        verifyEmail(token: string): void {
+        verifyEmail(token: string): void { // Verificar el correo electrónico
             
-            this.http.get<any>(`${GLOBAL.url}users/verify/${token}`)
+            this.http.get<any>(GLOBAL.url + 'users/verify/' + token )
               .subscribe((response) => {
                 console.log(response);
                 Swal.fire({
@@ -100,7 +97,7 @@ import { User } from "../Models/User";
           }
           
 
-        private isValidForm(): boolean {
+        private isValidForm(): boolean { // Comprobar si el formulario es válido
             return this.name !=='' && this.email !== '' && this.password !== '' ;
           }
   }

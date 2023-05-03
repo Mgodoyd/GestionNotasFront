@@ -27,9 +27,6 @@ export class NotesUpdateAuthorComponent {
       public estadoSelectValue: number;
       
       
-      
-   
-   
     constructor(private logout: Logout, private route: ActivatedRoute, private http: HttpClient,private cd: ChangeDetectorRef) {
         this.note = new Note(0, '', '', 0, 0);
         this.title = 'Actualizar Nota';
@@ -39,7 +36,6 @@ export class NotesUpdateAuthorComponent {
         this.estadoSelectValue = 0;
         }
 
-        
         
         ngOnInit(): void {
             const title = this.route.snapshot.params['titulo'];
@@ -58,71 +54,69 @@ export class NotesUpdateAuthorComponent {
               
           }
         
-          private getNoteByTitle(title: string) {
-            const httpOptions = {
-                headers: new HttpHeaders({
-                    Authorization: 'Bearer ' + localStorage.getItem('token'),
-                }),
-            };
-            return this.http.get(GLOBAL.url + 'notes/'+ title, httpOptions).pipe(
-                map((response: any) => response.data)
-            );
-        }
-        
-        getStatusStyles(statusId: number) {
-            switch(statusId) {
-              case 1:
-                return { backgroundColor: '#D0D0D0', color: 'black' };
-              case 2:
-                return { backgroundColor: '#4c80fc', color: 'white' };
-              case 3:
-                return { backgroundColor: '#13CD26', color: 'white' };
-              default:
-                return {};
-            }
-          }
-        
-          
-            
-          Updatenote() {
-            const httpOptions = {
-                headers: new HttpHeaders({
-                  Authorization: 'Bearer ' + localStorage.getItem('token'),
-                  'Content-Type': 'application/x-www-form-urlencoded'
-                })
-              };
-              
-              const body = new URLSearchParams();
-              body.set('title', this.tituloInputValue);
-              body.set('content', this.contenidoTextareaValue);
-              body.set('states_id', this.estadoSelectValue.toString());
-              body.set('user_id', localStorage.getItem('id') || '');
-              
-              this.http.put(GLOBAL.url + 'notes/' + this.note.identificador, body.toString(), httpOptions)
-                .subscribe(
-                  (response: any) => {
-                    console.log(response);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Note updated successfully!',
-                        text: this.tituloInputValue,
-                      })
-                  },
-                    (error: any) => {
-                        console.log(error);
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Se debe especificar al menos un campo diferente para actualizar la nota!',
-                                text: 'Para la nota:' + this.tituloInputValue,
-                            });
-                    }
+              private getNoteByTitle(title: string) {//obtener nota por titulo
+                const httpOptions = {
+                    headers: new HttpHeaders({
+                        Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    }),
+                };
+                return this.http.get(GLOBAL.url + 'notes/'+ title, httpOptions).pipe(
+                    map((response: any) => response.data)
                 );
+            }
+            
+            getStatusStyles(statusId: number) {//estilos de los estados
+                switch(statusId) {
+                  case 1:
+                    return { backgroundColor: '#D0D0D0', color: 'black' };
+                  case 2:
+                    return { backgroundColor: '#4c80fc', color: 'white' };
+                  case 3:
+                    return { backgroundColor: '#13CD26', color: 'white' };
+                  default:
+                    return {};
+                }
+              }
+            
               
-          }
-          
+              Updatenote() {//actualizar nota
+                const httpOptions = {
+                    headers: new HttpHeaders({
+                      Authorization: 'Bearer ' + localStorage.getItem('token'),
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    })
+                  };
+                  
+                  const body = new URLSearchParams();
+                  body.set('title', this.tituloInputValue);
+                  body.set('content', this.contenidoTextareaValue);
+                  body.set('states_id', this.estadoSelectValue.toString());
+                  body.set('user_id', localStorage.getItem('id') || '');
+                  
+                  this.http.put(GLOBAL.url + 'notes/' + this.note.identificador, body.toString(), httpOptions)
+                    .subscribe(
+                      (response: any) => {
+                        console.log(response);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Note updated successfully!',
+                            text: this.tituloInputValue,
+                          })
+                      },
+                        (error: any) => {
+                            console.log(error);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Se debe especificar al menos un campo diferente para actualizar la nota!',
+                                    text: 'Para la nota:' + this.tituloInputValue,
+                                });
+                        }
+                    );
+                  
+              }
+              
 
-
-    logoutUser() {
-        this.logout.logout();
-      }
+                logoutUser() {//cerrar sesion
+                    this.logout.logout();
+                }
 }

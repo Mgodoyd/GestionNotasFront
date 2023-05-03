@@ -7,7 +7,7 @@ import { Logout } from 'src/app/Services/Logout';
 import Swal from 'sweetalert2';
 
 @Component({
-    selector: 'app-usera',
+    selector: 'app-user',
     templateUrl: './usercomponent.html',
     styleUrls: ['./usercomponent.css']
 })
@@ -20,7 +20,7 @@ export class UserComponent {
     public canuserData: boolean = false;
     public canRol: boolean = false;
     public user: User[] = [];
-   filteredNotes: any;
+    filteredNotes: any;
     public searchId: string;
     public OWNER_ROLE = 'Owner';
     public AUTHOR_ROLE = 'Author';
@@ -50,45 +50,44 @@ export class UserComponent {
            console.log(this.canUser);
            console.log(this.canuserData);
            console.log(this.canRol);
-
        }     
       
    }
 
-   ngOnInit(): void {
-       this.getUser().subscribe((users) => { 
-           this.user = users;
-           this.filteredNotes = users; // Actualiza las notas filtradas con las notas originales
-           console.log(users); 
-         });  
-     }
-   
-     getUser(): Observable<any> {
-       const httpOptions = {
-         headers: new HttpHeaders({
-           Authorization: 'Bearer ' + localStorage.getItem('token'),
-         }),
-       };
-       // Usa el operador pipe y la función map para transformar la respuesta HTTP
-       return this.http.get(GLOBAL.url + 'users/', httpOptions).pipe(
-         map((response: any) => response.data)
-       );
-     }
-     
-     getStatusStyles(statusId: number) {
-       switch(statusId) {
-         case 1:
-           return { backgroundColor: '#D0D0D0', color: 'black' };
-         case 2:
-           return { backgroundColor: '#4c80fc', color: 'white' };
-         case 3:
-           return { backgroundColor: '#13CD26', color: 'white' };
-         default:
-           return {};
-       }
-     }
-   
-     deleteUser(identificador: number): void {
+        ngOnInit(): void {
+            this.getUser().subscribe((users) => { 
+                this.user = users;
+                this.filteredNotes = users; // Actualiza las notas filtradas con las notas originales
+                console.log(users); 
+              });  
+          }
+        
+          getUser(): Observable<any> {// Obtener las notas
+            const httpOptions = {
+              headers: new HttpHeaders({
+                Authorization: 'Bearer ' + localStorage.getItem('token'),
+              }),
+            };
+            // Usa el operador pipe y la función map para transformar la respuesta HTTP
+            return this.http.get(GLOBAL.url + 'users/', httpOptions).pipe(
+              map((response: any) => response.data)
+            );
+          }
+          
+          getStatusStyles(statusId: number) {// Estilos para el estado de la nota
+            switch(statusId) {
+              case 1:
+                return { backgroundColor: '#D0D0D0', color: 'black' };
+              case 2:
+                return { backgroundColor: '#4c80fc', color: 'white' };
+              case 3:
+                return { backgroundColor: '#13CD26', color: 'white' };
+              default:
+                return {};
+            }
+          }
+        
+     deleteUser(identificador: number): void {// Eliminar una nota
         const httpOptions = {
             headers: new HttpHeaders({
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -122,7 +121,7 @@ export class UserComponent {
     }
 
     
-     public searchUser(): void {
+     public searchUser(): void { // Buscar una nota
         // Verifica si el valor del input de búsqueda es vacío y, en ese caso, muestra todas las notas
         if (!this.searchId) {
           this.filteredNotes = this.user;
@@ -146,7 +145,7 @@ export class UserComponent {
       }
     
     
-   logoutUser() {
-       this.logout.logout();
-     }
+        logoutUser() {// Cerrar sesión
+            this.logout.logout();
+          }
    }

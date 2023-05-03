@@ -19,7 +19,7 @@ export class StatesComponent {
     public canuserData: boolean = false;
     public canRol: boolean = false;
     public states: State[] = [];
-   filteredNotes: any;
+    filteredNotes: any;
     
    
    
@@ -44,46 +44,43 @@ export class StatesComponent {
            console.log(this.canRol);
 
        }
-
-      
    }
 
-   ngOnInit(): void {
-       this.getState().subscribe((state) => { 
-           this.states = state;
-           this.filteredNotes = state; // Actualiza las notas filtradas con las notas originales
-           console.log(state); 
-         });
-      
-     }
-   
-     getState(): Observable<any> {
-       const httpOptions = {
-         headers: new HttpHeaders({
-           Authorization: 'Bearer ' + localStorage.getItem('token'),
-         }),
-       };
-       // Usa el operador pipe y la función map para transformar la respuesta HTTP
-       return this.http.get(GLOBAL.url + 'states/', httpOptions).pipe(
-         map((response: any) => response.data)
-       );
-     }
-     
-     getStatusStyles(statusId: number) {
-       switch(statusId) {
-         case 1:
-           return { backgroundColor: '#D0D0D0', color: 'black' };
-         case 2:
-           return { backgroundColor: '#4c80fc', color: 'white' };
-         case 3:
-           return { backgroundColor: '#13CD26', color: 'white' };
-         default:
-           return {};
-       }
-     }
+          ngOnInit(): void {
+              this.getState().subscribe((state) => { 
+                  this.states = state;
+                  this.filteredNotes = state; // Actualiza las notas filtradas con las notas originales
+                  console.log(state); 
+                });
+            }
+          
+            getState(): Observable<any> {//obtener los estados
+              const httpOptions = {
+                headers: new HttpHeaders({
+                  Authorization: 'Bearer ' + localStorage.getItem('token'),
+                }),
+              };
+              // Usa el operador pipe y la función map para transformar la respuesta HTTP
+              return this.http.get(GLOBAL.url + 'states/', httpOptions).pipe(
+                map((response: any) => response.data)
+              );
+            }
+            
+            getStatusStyles(statusId: number) {//estilos de los estados
+              switch(statusId) {
+                case 1:
+                  return { backgroundColor: '#D0D0D0', color: 'black' };
+                case 2:
+                  return { backgroundColor: '#4c80fc', color: 'white' };
+                case 3:
+                  return { backgroundColor: '#13CD26', color: 'white' };
+                default:
+                  return {};
+              }
+            }
 
-    
-   logoutUser() {
-       this.logout.logout();
-     }
+            
+          logoutUser() {//cerrar sesion
+              this.logout.logout();
+            }
    }

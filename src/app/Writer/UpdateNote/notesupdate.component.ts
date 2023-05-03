@@ -27,10 +27,7 @@ export class NotesUpdateComponent {
       public estadoSelectValue: number;
       
       
-      
-   
-   
-    constructor(private logout: Logout, private route: ActivatedRoute, private http: HttpClient,private cd: ChangeDetectorRef) {
+       constructor(private logout: Logout, private route: ActivatedRoute, private http: HttpClient,private cd: ChangeDetectorRef) {
         this.note = new Note(0, '', '', 0, 0);
         this.title = 'Actualizar Nota';
         this.logoutUser = this.logoutUser.bind(this);// Bind para que el this de logoutUser sea el de la clase
@@ -39,8 +36,6 @@ export class NotesUpdateComponent {
         this.estadoSelectValue = 0;
         }
 
-        
-        
         ngOnInit(): void {
             const title = this.route.snapshot.params['titulo'];
           //  console.log(title);
@@ -58,7 +53,7 @@ export class NotesUpdateComponent {
               
           }
         
-          private getNoteByTitle(title: string) {
+          private getNoteByTitle(title: string) { // Obtener la nota por el título
             const httpOptions = {
                 headers: new HttpHeaders({
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -69,7 +64,7 @@ export class NotesUpdateComponent {
             );
         }
         
-        getStatusStyles(statusId: number) {
+        getStatusStyles(statusId: number) { // Obtener los estilos de acuerdo al estatus
             switch(statusId) {
               case 1:
                 return { backgroundColor: '#D0D0D0', color: 'black' };
@@ -83,8 +78,7 @@ export class NotesUpdateComponent {
           }
         
           
-            
-          Updatenote() {
+          Updatenote() { // Actualizar la nota
             const httpOptions = {
                 headers: new HttpHeaders({
                   Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -121,8 +115,7 @@ export class NotesUpdateComponent {
           }
           
 
-
-    logoutUser() {
-        this.logout.logout();
+       logoutUser() { // Función para cerrar sesión
+          this.logout.logout();
       }
 }

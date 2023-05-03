@@ -53,7 +53,7 @@ export class ReadWirterComponent {
         });
       }
     
-      getNotes(): Observable<any> {
+      getNotes(): Observable<any> { // Obtener las notas
         const httpOptions = {
           headers: new HttpHeaders({
             Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -66,7 +66,8 @@ export class ReadWirterComponent {
           map((response: any) => response.data)
         );
       }
-      public searchNote(): void {
+
+      public searchNote(): void { // Buscar notas
         // Verifica si el valor del input de búsqueda es vacío y, en ese caso, muestra todas las notas
         if (!this.searchId) {
           this.filteredNotes = this.notes;
@@ -78,7 +79,6 @@ export class ReadWirterComponent {
           // Encontró notas, reinicia el input de búsqueda
           this.searchId = '';
         } else {
-          // No encontró notas, muestra un mensaje de error y reinicia el input de búsqueda
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -89,7 +89,7 @@ export class ReadWirterComponent {
         }
       }
 
-      getStatusStyles(statusId: number) {
+      getStatusStyles(statusId: number) { // Estilos para el estado de la nota
         switch(statusId) {
           case 1:
             return { backgroundColor: '#D0D0D0', color: 'black' };
@@ -102,14 +102,11 @@ export class ReadWirterComponent {
         }
       }
 
-     
-        
-      
       deletenote(){
         console.log('no puedes eliminar')
       }
-    logoutUser() {
-        this.logout.logout();
+      logoutUser() { // Cerrar sesión
+           this.logout.logout();
       }
     }
 

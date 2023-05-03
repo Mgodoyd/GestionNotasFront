@@ -4,7 +4,6 @@ import { Observable, map } from 'rxjs';
 import { Rol } from 'src/app/Models/Rol';
 import { GLOBAL } from 'src/app/Services/Global';
 import { Logout } from 'src/app/Services/Logout';
-import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-owner',
@@ -20,7 +19,7 @@ export class RolComponent {
      public canuserData: boolean = false;
      public canRol: boolean = false;
      public rol: Rol[] = [];
-    filteredNotes: any;
+     filteredNotes: any;
      
     
     
@@ -45,46 +44,44 @@ export class RolComponent {
             console.log(this.canRol);
 
         }
-
-       
     }
 
-    ngOnInit(): void {
-        this.getRol().subscribe((rol) => { 
-            this.rol = rol;
-            this.filteredNotes = rol; // Actualiza las notas filtradas con las notas originales
-            console.log(rol); 
-          });
-       
-      }
-    
-      getRol(): Observable<any> {
-        const httpOptions = {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
-          }),
-        };
-        // Usa el operador pipe y la función map para transformar la respuesta HTTP
-        return this.http.get(GLOBAL.url + 'rols/', httpOptions).pipe(
-          map((response: any) => response.data)
-        );
-      }
-      
-      getStatusStyles(statusId: number) {
-        switch(statusId) {
-          case 1:
-            return { backgroundColor: '#D0D0D0', color: 'black' };
-          case 2:
-            return { backgroundColor: '#4c80fc', color: 'white' };
-          case 3:
-            return { backgroundColor: '#13CD26', color: 'white' };
-          default:
-            return {};
-        }
-      }
+          ngOnInit(): void {
+              this.getRol().subscribe((rol) => { 
+                  this.rol = rol;
+                  this.filteredNotes = rol; // Actualiza las notas filtradas con las notas originales
+                  console.log(rol); 
+                });
+            
+            }
+          
+            getRol(): Observable<any> { //obtener los roles
+              const httpOptions = {
+                headers: new HttpHeaders({
+                  Authorization: 'Bearer ' + localStorage.getItem('token'),
+                }),
+              };
+              // Usa el operador pipe y la función map para transformar la respuesta HTTP
+              return this.http.get(GLOBAL.url + 'rols/', httpOptions).pipe(
+                map((response: any) => response.data)
+              );
+            }
+            
+            getStatusStyles(statusId: number) { // Estilos para el estado de la nota
+              switch(statusId) {
+                case 1:
+                  return { backgroundColor: '#D0D0D0', color: 'black' };
+                case 2:
+                  return { backgroundColor: '#4c80fc', color: 'white' };
+                case 3:
+                  return { backgroundColor: '#13CD26', color: 'white' };
+                default:
+                  return {};
+              }
+            }
 
-     
-    logoutUser() {
-        this.logout.logout();
-      }
+          
+          logoutUser() {// Función para cerrar sesións
+              this.logout.logout();
+            }
     }

@@ -37,7 +37,6 @@ export class UpdateUserComponent {
         }
 
         
-        
         ngOnInit(): void {
             const id = this.route.snapshot.params['identificador'];
           //  console.log(title);
@@ -57,7 +56,7 @@ export class UpdateUserComponent {
               
           }
           
-          private getUserById(id: number) {
+          private getUserById(id: number) {// Obtener las notas
             const httpOptions = {
               headers: new HttpHeaders({
                 Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -68,7 +67,7 @@ export class UpdateUserComponent {
             );
           }
 
-          UpdateUser() {
+          UpdateUser() { // Actualizar la nota
             const httpOptions = {
                 headers: new HttpHeaders({
                   Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -103,12 +102,12 @@ export class UpdateUserComponent {
               
           }
           
-          isUserVerified() {
+          isUserVerified() { // Comprobar si la nota está verificada
             return this.users && this.users.es_verificado;
           }
           
 
-    logoutUser() {
-        this.logout.logout();
-      }
+          logoutUser() { // Cerrar sesión
+              this.logout.logout();
+            }
 }

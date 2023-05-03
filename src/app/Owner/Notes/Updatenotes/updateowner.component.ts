@@ -26,9 +26,6 @@ export class UpdateOwnerComponent {
       public estadoSelectValue: number;
       
       
-      
-   
-   
     constructor(private logout: Logout, private route: ActivatedRoute, private http: HttpClient,private cd: ChangeDetectorRef) {
         this.note = new Note(0, '', '', 0, 0);
         this.title = 'Actualizar Nota';
@@ -38,7 +35,6 @@ export class UpdateOwnerComponent {
         this.estadoSelectValue = 0;
         }
 
-        
         
         ngOnInit(): void {
             const title = this.route.snapshot.params['titulo'];
@@ -57,7 +53,7 @@ export class UpdateOwnerComponent {
               
           }
         
-          private getNoteByTitle(title: string) {
+          private getNoteByTitle(title: string) { //obtener las notas por titulo
             const httpOptions = {
                 headers: new HttpHeaders({
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -68,7 +64,7 @@ export class UpdateOwnerComponent {
             );
         }
         
-        getStatusStyles(statusId: number) {
+        getStatusStyles(statusId: number) {//obtener el color de fondo de la nota
             switch(statusId) {
               case 1:
                 return { backgroundColor: '#D0D0D0', color: 'black' };
@@ -81,9 +77,8 @@ export class UpdateOwnerComponent {
             }
           }
         
-          
             
-          Updatenote() {
+          Updatenote() { //actualizar la nota
             const httpOptions = {
                 headers: new HttpHeaders({
                   Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -119,9 +114,7 @@ export class UpdateOwnerComponent {
               
           }
           
-
-
-    logoutUser() {
-        this.logout.logout();
-      }
+        logoutUser() {//cerrar sesion
+            this.logout.logout();
+          }
 }

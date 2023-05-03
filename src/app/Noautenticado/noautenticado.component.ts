@@ -17,11 +17,7 @@ export class NoautenticadoComponent {
             if (!token) {
               // no existe el token, redirigir al componente no autenticado
               this.router.navigate(['unauthorized']);
-            } else {
-              // token existe, mostrar el componente protegido
-              // el código para mostrar el componente correspondiente
-              // debe colocarse aquí
-            }
+            } else {}
           }
 
 }

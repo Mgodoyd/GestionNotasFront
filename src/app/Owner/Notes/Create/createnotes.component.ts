@@ -47,7 +47,7 @@ export class CreateNotesOwnerComponent {
                 );
             }
             
-            getUsersByRole(rol: number) {
+            getUsersByRole(rol: number) {//obtener usuarios por rol
                 const httpOptions = {
                     headers: new HttpHeaders({
                         Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -59,44 +59,44 @@ export class CreateNotesOwnerComponent {
             }
             
             
-   createnote() {
-       const httpOptions = {
-           headers: new HttpHeaders({
-             Authorization: 'Bearer ' + localStorage.getItem('token'),
-             'Content-Type': 'application/x-www-form-urlencoded'
-           })
-         };
-         
-         const body = new URLSearchParams();
-         body.set('title', this.tituloInputValue);
-         body.set('content', this.contenidoTextareaValue);
-         body.set('user_id', this.userSelectValue.toString());
-        
-         
-         this.http.post(GLOBAL.url + 'notes', body.toString(), httpOptions)
-           .subscribe(
-             (response: any) => {
-               console.log(response);
-               Swal.fire({
-                   icon: 'success',
-                   title: 'Note created successfully!',
-                   text: this.tituloInputValue,
-                 })
-             },
-               (error: any) => {
-                   console.log(error);
-                       Swal.fire({
-                           icon: 'error',
-                           title: 'Error al crear la nota',
-                           text: 'Para la nota:' + this.tituloInputValue,
-                       });
-               }
-           );
-         
-       }
-     
-   logoutUser() {
-       this.logout.logout();
-     }
+            createnote() { //crear nota
+                const httpOptions = {
+                    headers: new HttpHeaders({
+                        Authorization: 'Bearer ' + localStorage.getItem('token'),
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    })
+                    };
+                    
+                    const body = new URLSearchParams();
+                    body.set('title', this.tituloInputValue);
+                    body.set('content', this.contenidoTextareaValue);
+                    body.set('user_id', this.userSelectValue.toString());
+                    
+                    
+                    this.http.post(GLOBAL.url + 'notes', body.toString(), httpOptions)
+                    .subscribe(
+                        (response: any) => {
+                        console.log(response);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Note created successfully!',
+                            text: this.tituloInputValue,
+                            })
+                        },
+                        (error: any) => {
+                            console.log(error);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error al crear la nota',
+                                    text: 'Para la nota:' + this.tituloInputValue,
+                                });
+                        }
+                    );
+                    
+                }
+                
+            logoutUser() {//cerrar sesion
+                this.logout.logout();
+                }
 
 }

@@ -7,7 +7,7 @@ import {  ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@
 export class AuthGuard  {
   constructor(private router: Router) {}
 
-  canActivate(
+  canActivate( // Comprobar si el usuario está logueado
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean | UrlTree {
     const token = localStorage.getItem('token');

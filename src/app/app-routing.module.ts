@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+//login
 import { LoginComponent } from './Login/login.component';
+//register
 import { RegisterComponent } from './Register/register.component';
 
 //reader
@@ -15,6 +17,7 @@ import { NotesUpdateComponent } from './Writer/UpdateNote/notesupdate.component'
 import { ReadAuthorComponent } from './Author/Notes/notesauthor.component';
 import { NotesUpdateAuthorComponent } from './Author/UpdateNotes/updatenotesauthor.component';
 import { CreateNotesAuthorComponent } from './Author/CreateNotes/createnotesauthor.component';
+
 //owner
 import { NotesOwnerComponent } from './Owner/Notes/Read/notesowner.component';
 import { UpdateOwnerComponent } from './Owner/Notes/Updatenotes/updateowner.component';

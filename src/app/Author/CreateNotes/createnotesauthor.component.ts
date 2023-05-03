@@ -32,67 +32,67 @@ export class CreateNotesAuthorComponent {
         this.note = new Note(0, '', '', 0, 0);
     }
 
-    ngOnInit(): void {
-        this.getUsersByRole(3).subscribe(
-            (response: User[]) => {
-              this.user = response;
-                console.log(this.user);
-            },
-            (error: any) => {
-              console.log(error);
-            }
-          );
-        }
-      
-        getUsersByRole(rol: number) {
-            const httpOptions = {
-                headers: new HttpHeaders({
-                    Authorization: 'Bearer ' + localStorage.getItem('token'),
-                }),
-            };
-            return this.http.get(GLOBAL.url + 'rols/'+ rol + '/users', httpOptions).pipe(
-                map((response: any) => response.data)
-            );
-            }
-  
-    createnote() {
-        const httpOptions = {
-            headers: new HttpHeaders({
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-              'Content-Type': 'application/x-www-form-urlencoded'
-            })
-          };
-          
-          const body = new URLSearchParams();
-          body.set('title', this.tituloInputValue);
-          body.set('content', this.contenidoTextareaValue);
-          body.set('user_id', this.userSelectValue.toString());
-         
-          
-          this.http.post(GLOBAL.url + 'notes/', body.toString(), httpOptions)
-            .subscribe(
-              (response: any) => {
-                console.log(response);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Note created successfully!',
-                    text: this.tituloInputValue,
-                  })
-              },
-                (error: any) => {
-                    console.log(error);
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error al crear la nota',
-                            text: 'Para la nota:' + this.tituloInputValue,
-                        });
+            ngOnInit(): void {
+                this.getUsersByRole(3).subscribe(
+                    (response: User[]) => {
+                      this.user = response;
+                        console.log(this.user);
+                    },
+                    (error: any) => {
+                      console.log(error);
+                    }
+                  );
                 }
-            );
+              
+                getUsersByRole(rol: number) {//obtener usuarios por rol
+                    const httpOptions = {
+                        headers: new HttpHeaders({
+                            Authorization: 'Bearer ' + localStorage.getItem('token'),
+                        }),
+                    };
+                    return this.http.get(GLOBAL.url + 'rols/'+ rol + '/users', httpOptions).pipe(
+                        map((response: any) => response.data)
+                    );
+                    }
           
-        }
-      
-    logoutUser() {
-        this.logout.logout();
-      }
+            createnote() {//crear nota
+                const httpOptions = {
+                    headers: new HttpHeaders({
+                      Authorization: 'Bearer ' + localStorage.getItem('token'),
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    })
+                  };
+                  
+                  const body = new URLSearchParams();
+                  body.set('title', this.tituloInputValue);
+                  body.set('content', this.contenidoTextareaValue);
+                  body.set('user_id', this.userSelectValue.toString());
+                
+                  
+                  this.http.post(GLOBAL.url + 'notes/', body.toString(), httpOptions)
+                    .subscribe(
+                      (response: any) => {
+                        console.log(response);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Note created successfully!',
+                            text: this.tituloInputValue,
+                          })
+                      },
+                        (error: any) => {
+                            console.log(error);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error al crear la nota',
+                                    text: 'Para la nota:' + this.tituloInputValue,
+                                });
+                        }
+                    );
+                  
+                }
+              
+            logoutUser() {//cerrar sesion
+                this.logout.logout();
+              }
 
 }
