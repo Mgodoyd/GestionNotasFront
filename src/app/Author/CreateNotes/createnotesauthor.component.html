@@ -19,7 +19,7 @@
             <input type="text" class="form-control" id="FormControlInput1" placeholder="Título de la nota" [(ngModel)]="tituloInputValue">
             <div class="select">
                 <select class="status-select" [(ngModel)]="userSelectValue">
-                  <option class="optionuser" *ngFor="let users of user" [value]="users.identificador">{{ users.nombre }} Rol:{{users.rol}}</option>
+                  <option class="optionuser" *ngFor="let users of user" [value]="users.identificador">{{ users.nombre }}</option>
                 </select>          
               </div>              
           </div>
@@ -29,7 +29,7 @@
           </div>
           <div class="mb-3">
             <button class="button_guardar" (click)="createnote()">Crear</button>
-            <button  class="button_regresar"  [routerLink]="'/owner/notes'">Regresar</button>
+            <button  class="button_regresar"  [routerLink]="'/author/notes'">Regresar</button>
           </div>
       </div>
 </div>

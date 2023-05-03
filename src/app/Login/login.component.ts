@@ -79,7 +79,7 @@ export class LoginComponent {
           this.router.navigate(['owner/notes']);
           this.showWelcomeToast(1);
         } else if (this.rol == 2) {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['author/notes']);
           this.showWelcomeToast(2);
         } else if (this.rol == 3) {
           this.router.navigate(['writer/notes']);

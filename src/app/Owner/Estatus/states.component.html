@@ -1,0 +1,44 @@
+<div >
+    <nav class="navbar">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1 text-dark">Gestion Notas</span>
+          <ul class="nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link text-dark border-bottom active" aria-current="page" [routerLink]="'/owner/notes'">Notas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark"   data-tooltip="No estás autorizado" [ngClass]="{'disabled': !canUser}" id="link_user" [routerLink]="['/owner/users']">Usuarios</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link text-dark border-bottom active" aria-current="page" [ngClass]="{'disabled': !canRol}" [routerLink]="['/owner/rol']">Rol</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark border-bottom active" aria-current="page" [ngClass]="{'disabled': !canRol}" [routerLink]="['/owner/states']">Estatus</a>
+            </li>
+          </ul>
+          <button type="button" class="btn btn-outline-success" (click)="logoutUser()">Sign off</button>
+        </div>
+      </nav>
+      
+      <nav class="navbar_">
+      </nav>
+      <div class="container-cards">
+          
+                <table class="table">
+                    <thead class="table-color">
+                      <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Fecha Creación</th>
+                        <th>Fecha Actualización</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let states of filteredNotes">
+                      <tr>
+                        <td>{{states.identificador}}</td>
+                        <td>{{states.nombre}}</td>     
+                        <td>{{states.fecha_creacion}}</td>    
+                        <td>{{states.fecha_actualizacion}}</td>                      
+                    </tbody>
+                  </table>
+</div>

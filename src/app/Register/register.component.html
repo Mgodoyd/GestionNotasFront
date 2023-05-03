@@ -4,26 +4,30 @@
       <p>“No hay nada más poderoso que la determinación y la pasión”.</p>
     </div>
     <div class="right">
-      <p class="help">Need Help?</p>
-      <form class="form-login">
+      <form class="form-login"  (ngSubmit)="onSubmit()" #RegisterForm="ngForm">
         <div class="mb-3">
             <p class="login-word">{{title}}</p>
             <label  class="form-label">Name</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" required #nameInput="ngModel">
+            <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)" class="alert alert-danger">
+              <div *ngIf="nameInput?.errors?.['required']">Name is required</div>
+            </div>
           </div>
         <div class="mb-3">
           <label  class="form-label">Email address</label>
-          <input type="email" class="form-control" >
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required #emailInput="ngModel">
+        <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="alert alert-danger">
+          <div *ngIf="emailInput.errors && emailInput.errors['required']">Email is required</div>
+        </div>
         </div>
         <div class="mb-3">
-          <label  class="form-label">Password</label>
-          <input type="password" class="form-control" >
-        </div>
-        <div class="mb-3">
-            <label  class="form-label">Repeat Password</label>
-            <input type="password" class="form-control" >
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required #passwordInput="ngModel">
+          <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)" class="alert alert-danger">
+            <div *ngIf="passwordInput?.errors?.['required']">Password is required</div>
           </div>
-        <button type="button" class="btn btn-outline-success" id="button-submit">Submit</button>
+        </div>        
+        <button type="submit" class="btn btn-outline-success" id="button-submit" [disabled]="RegisterForm.invalid">Submit</button>
         <span class="login">Already have an account? <a [routerLink]="['/']">Log in</a>
         </span>
       </form>

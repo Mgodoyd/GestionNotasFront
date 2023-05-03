@@ -8,41 +8,6 @@
     width: 30%;
     margin: 0 65%;
 }
-ul{
-    margin-left: -110rem;
-}
-#link_user {
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-#link_user.disabled {
-    cursor: not-allowed;
-}
-
-#link_user.disabled::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: 0px;
-    left: 0%;
-    transform: translateX(-10%);
-    background-color: rgba(0,0,0,0.8);
-    color: #fff;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    opacity: 0;
-    width: 9rem;
-    transition: opacity 0.3s;
-    pointer-events: none;
-    visibility: hidden;
-}
-
-#link_user:hover.disabled::before {
-    opacity: 1;
-    visibility: visible;
-}
 .container-from{
     box-shadow: 0 0 20px 0 rgba(0,0,0,.2);
     border-radius: 1rem;
@@ -70,7 +35,6 @@ ul{
     height: 20rem;
 }
  select {
-    border:0!important;
     flex: 1;
     padding: 0rem;
     color:#000000;
@@ -83,9 +47,9 @@ ul{
     position: relative;
     display: flex;
     margin-top: 4.2rem;
-    height: 3em;
-    line-height: 3;
-    background: #5c6664;
+    height: 1em;
+    line-height: 2;
+    background: #0cedc0;
     overflow: hidden;
     border-radius: .25em;
  }
@@ -112,10 +76,10 @@ option {
  .select {
     position: relative;
     display: flex;
-    width: 16em;
+    width: 11em;
     height: 2rem;
     line-height: 3;
-    background: #ffffff;
+    background: #561616;
     overflow: hidden;
     border-radius: .25em;
  }
@@ -156,4 +120,6 @@ option {
  .button_regresar:hover{
     background-color: #1a9e2a;
  }
- 
+ #FormControlInput2{
+    width: 80%;
+ }

@@ -4,10 +4,16 @@
           <span class="navbar-brand mb-0 h1 text-dark">Gestion Notas</span>
           <ul class="nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link text-dark border-bottom active" aria-current="page" [routerLink]="'/author/notes'">Notas</a>
+              <a class="nav-link text-dark border-bottom active" aria-current="page" [routerLink]="'/owner/notes'">Notas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark"  href="#"  data-tooltip="No estás autorizado" [ngClass]="{'disabled': !canUser}" id="link_user">Usuarios</a>
+              <a class="nav-link text-dark"  href="#"  data-tooltip="No estás autorizado" [ngClass]="{'disabled': !canUser}" id="link_user" [routerLink]="['/owner/users']">Usuarios</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link text-dark border-bottom active" aria-current="page" [ngClass]="{'disabled': !canRol}" [routerLink]="['/owner/rol']">Rol</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark border-bottom active" aria-current="page" [ngClass]="{'disabled': !canRol}" [routerLink]="['/owner/states']">Estatus</a>
             </li>
           </ul>
           <button type="button" class="btn btn-outline-success" (click)="logoutUser()">Sign off</button>
@@ -18,7 +24,7 @@
         <div class="container-fluid">
           <a class="navbar-brand"></a>
           <form class="d-flex" role="search">
-            <button [disabled]="!canCreate" data-tooltip="No estás autorizado" class="button_create" type="submit" [ngClass]="{'disabled': !canCreate}" [routerLink]="['/createauthor']">Crear</button>
+            <button [disabled]="!canCreate" data-tooltip="No estás autorizado" class="button_create" type="submit" [ngClass]="{'disabled': !canCreate}" [routerLink]="['/createowner']">Crear</button>
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchInput" [(ngModel)]="searchId">
             <button class="button_search" type="submit" (click)="searchNote()">Search</button>
           </form>
@@ -50,7 +56,7 @@
                           </div>
                           </td>  
                         <td class="row-container">
-                          <button [disabled]="!canUpdate" data-tooltip="No estás autorizado" class="button_update" [ngClass]="{'disabled': !canUpdate}" [routerLink]="'/updateauthor/' + note.titulo"  >Actualizar</button>
+                          <button [disabled]="!canUpdate" data-tooltip="No estás autorizado" class="button_update" [ngClass]="{'disabled': !canUpdate}" [routerLink]="'/updateowner/' + note.titulo"  >Actualizar</button>
                             <button  [disabled]="!canDelete" data-tooltip="No estás autorizado" class="button_delete" (click)="deletenote(note.identificador)"[ngClass]="{'disabled': !canDelete}">Eliminar</button>
                         </td>                        
                     </tbody>

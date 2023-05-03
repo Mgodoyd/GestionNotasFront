@@ -1,0 +1,27 @@
+<div >
+    <nav class="navbar">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Gestion Notas</span>
+          <button type="button" class="btn btn-outline-success" (click)="logoutUser()">Sign off</button>
+        </div>
+      </nav>
+      <div class="container-from">
+        <div class="mb-3" id="from-container">
+            <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+            <input type="text" class="form-control" id="FormControlInput1" placeholder="Título de la nota" [(ngModel)]="tituloInputValue">
+            <div class="select" [ngStyle]="getStatusStyles(note.Estatus)" >
+              <select [(ngModel)]="estadoSelectValue"  class="status-select" [ngStyle]="getStatusStyles(note.Estatus)">
+                <option *ngFor="let estado of states" [value]="estado.id" class="optionstatus" [ngStyle]="getStatusStyles(estado.id)">{{ estado.nombre }}</option>
+              </select>          
+            </div>            
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Contenido</label>
+            <textarea class="form-control" id="FormControlTextarea1" rows="3" [(ngModel)]="contenidoTextareaValue">{{note.descripcion}}</textarea>
+          </div>
+          <div class="mb-3">
+            <button class="button_guardar" (click)="Updatenote()">Guardar</button>
+            <button  class="button_regresar"  [routerLink]="'/author/notes'">Regresar</button>
+          </div>
+      </div>
+</div>

@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
-import { GLOBAL } from 'src/app/Services/Global';
-import { Note } from 'src/app/Models/Note';
-import Swal from 'sweetalert2';
-import { Logout } from 'src/app/Services/Logout';
-import { Observable, map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Component } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import { Note } from 'src/app/Models/Note';
+import { GLOBAL } from 'src/app/Services/Global';
+import { Logout } from 'src/app/Services/Logout';
+import Swal from 'sweetalert2';
 
 @Component({
-    selector: 'author-readnotes',
-    templateUrl: './notesauthor.component.html',
-    styleUrls: ['./notesauthor.component.css']
+    selector: 'app-owner',
+    templateUrl: './notesowner.component.html',
+    styleUrls: ['./notesowner.component.css']
 })
-export class ReadAuthorComponent {
+
+export class NotesOwnerComponent {
     public title: string;
     public notes: Note[] = [];
     public searchId: string;
@@ -26,6 +26,8 @@ export class ReadAuthorComponent {
      public canUpdate: boolean = false;
      public canDelete: boolean = false;
      public canUser: boolean = false; 
+     public canuserData: boolean = false;
+     public canRol: boolean = false;
      
     
     
@@ -40,11 +42,16 @@ export class ReadAuthorComponent {
             this.canUpdate = scopes.includes('update');
             this.canDelete = scopes.includes('destroy');
             this.canUser = scopes.includes('manage-rol-user');
+            this.canuserData = scopes.includes('manage-account');
+            this.canRol = scopes.includes('manage-rol-state');
+
     
             console.log(this.canCreate);
             console.log(this.canUpdate);
             console.log(this.canDelete);
             console.log(this.canUser);
+            console.log(this.canuserData);
+            console.log(this.canRol);
 
         }
 
@@ -65,10 +72,8 @@ export class ReadAuthorComponent {
             Authorization: 'Bearer ' + localStorage.getItem('token'),
           }),
         };
-        const id= localStorage.getItem('id');
-        console.log(localStorage.getItem('id'));
         // Usa el operador pipe y la función map para transformar la respuesta HTTP
-        return this.http.get(GLOBAL.url + 'notes/' + id + '/users', httpOptions).pipe(
+        return this.http.get(GLOBAL.url + 'notes/', httpOptions).pipe(
           map((response: any) => response.data)
         );
       }
@@ -149,5 +154,4 @@ export class ReadAuthorComponent {
     logoutUser() {
         this.logout.logout();
       }
-    }
-
+}

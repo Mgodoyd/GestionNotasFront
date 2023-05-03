@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './Login/login.component';
 import { RegisterComponent } from './Register/register.component';
-//owner
-import { NotesComponent } from './Owner/Notes/Create/createnotes.component';
 
 //reader
 import { ReadNotesComponent } from './Reader/readnotescomponent';
@@ -19,9 +17,22 @@ import { ReadNotesComponent } from './Reader/readnotescomponent';
 import { ReadWirterComponent } from './Writer/ReadNote/noteswriter.component';
 import { NotesUpdateComponent } from './Writer/UpdateNote/notesupdate.component';
 
+//author
+import { ReadAuthorComponent } from './Author/Notes/notesauthor.component';
+import { NotesUpdateAuthorComponent } from './Author/UpdateNotes/updatenotesauthor.component';
+import { CreateNotesAuthorComponent } from './Author/CreateNotes/createnotesauthor.component';
+
+//owner
+import { NotesOwnerComponent } from './Owner/Notes/Read/notesowner.component';
+import { UpdateOwnerComponent } from './Owner/Notes/Updatenotes/updateowner.component';
+import { CreateNotesOwnerComponent } from './Owner/Notes/Create/createnotes.component';
+import { RolComponent } from './Owner/Rol/rol.component';
+import { StatesComponent} from './Owner/Estatus/states.component';
+import { UserComponent } from './Owner/Users/ReadUsers/usercomponent';
+import { UpdateUserComponent } from './Owner/Users/UpdateUsers/updateuser.component';
+
 //error 404
 import { ErrorComponent } from './Erro404/error.component';
-
 
 //interceptor
 import { Interceptor } from './AuthService/Interceptor';
@@ -34,12 +45,21 @@ import { NoautenticadoComponent } from './Noautenticado/noautenticado.component'
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NotesComponent,
     ReadNotesComponent,
     ErrorComponent,
     NoautenticadoComponent,
     ReadWirterComponent,
-    NotesUpdateComponent
+    NotesUpdateComponent,
+    ReadAuthorComponent,
+    NotesUpdateAuthorComponent,
+    CreateNotesAuthorComponent,
+    NotesOwnerComponent,
+    UpdateOwnerComponent,
+    CreateNotesOwnerComponent,
+    RolComponent,
+    StatesComponent,
+    UserComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,31 @@
+<div >
+    <nav class="navbar">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Gestion Notas</span>
+          <button type="button" class="btn btn-outline-success" (click)="logoutUser()">Sign off</button>
+        </div>
+      </nav>
+      <div class="container-from">
+        <div class="mb-3" id="from-container">
+            <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+            <input type="text" class="form-control" id="FormControlInput1" placeholder="usuario" [(ngModel)]="tituloInputValue">
+            <div class="select" >
+                <select [(ngModel)]="estadoSelectValue" class="status-select" [disabled]="!isUserVerified()">
+                    <option *ngFor="let rols of rol" [value]="rols.id" class="optionstatus">{{ rols.nombre }}</option>
+                  </select>                           
+            </div>            
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Estado de la Cuenta</label>
+            <input type="text" class="form-control" id="FormControlInput2" placeholder="verificación" [(ngModel)]="verifiedInputValue">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Correo</label>
+            <input type="text" class="form-control" id="FormControlInput2" placeholder="correo" [(ngModel)]="contenidoTextareaValue">
+          </div>
+          <div class="mb-3">
+            <button class="button_guardar" (click)="UpdateUser()">Guardar</button>
+            <button  class="button_regresar"  [routerLink]="['/owner/users']">Regresar</button>
+          </div>
+      </div>
+</div>

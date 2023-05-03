@@ -1,0 +1,68 @@
+<div >
+    <nav class="navbar">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1 text-dark">Gestion Notas</span>
+        <ul class="nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-dark border-bottom active" aria-current="page" [routerLink]="'/owner/notes'">Notas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark"  href="#"  data-tooltip="No estás autorizado" [ngClass]="{'disabled': !canUser}" id="link_user" [routerLink]="['/owner/users']">Usuarios</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link text-dark border-bottom active" aria-current="page" [ngClass]="{'disabled': !canRol}" [routerLink]="['/owner/rol']">Rol</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark border-bottom active" aria-current="page" [ngClass]="{'disabled': !canRol}" [routerLink]="['/owner/states']">Estatus</a>
+          </li>
+        </ul>
+        <button type="button" class="btn btn-outline-success" (click)="logoutUser()">Sign off</button>
+      </div>
+    </nav>
+    <nav class="navbar_">
+        <div class="container-fluid">
+          <a class="navbar-brand"></a>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchInput" [(ngModel)]="searchId">
+            <button class="button_search" type="submit" (click)="searchUser()">Search</button>
+          </form>
+        </div>
+      </nav>
+        <div class="container-cards">
+            
+                  <table class="table">
+                      <thead class="table-color">
+                        <tr>
+                          <th>Id</th>
+                          <th>Nombre</th>
+                          <th>Correo</th>
+                          <th>Rol</th>
+                          <th>Verificación</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let user of filteredNotes">
+                        <tr>
+                          <td>{{user.identificador}}</td>
+                          <td>{{user.nombre}}</td>     
+                          <td>{{user.correo}}</td>    
+                          <td [ngSwitch]="user.rol">
+                            <span *ngSwitchCase="1">{{ OWNER_ROLE }}</span>
+                            <span *ngSwitchCase="2">{{ AUTHOR_ROLE }}</span>
+                            <span *ngSwitchCase="3">{{ WRITER_ROLE }}</span>
+                            <span *ngSwitchCase="4">{{ READER_ROLE }}</span>
+                            <span *ngSwitchDefault>No definido</span>
+                          </td>                          
+                          <td>
+                            <span *ngIf="user.es_verificado === 1">Verificado</span>
+                            <span *ngIf="user.es_verificado === 0">No verificado</span>
+                          </td>                          
+                          <td class="row-container">
+                            <button [disabled]="!canUpdate" data-tooltip="No estás autorizado" class="button_update" [ngClass]="{'disabled': !canUpdate}" [routerLink]="'/ownerupdateuser/' + user.identificador"  >Actualizar</button>
+                            <button [disabled]="!canDelete" data-tooltip="No estás autorizado" class="button_delete" (click)="deleteUser(user.identificador)"[ngClass]="{'disabled': !canDelete}">Eliminar</button>
+                          </td>                      
+                        </tr>
+                      </tbody>
+                      
+                    </table>
+  </div>

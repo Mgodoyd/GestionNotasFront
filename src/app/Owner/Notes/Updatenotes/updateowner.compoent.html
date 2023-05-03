@@ -1,15 +1,7 @@
 <div >
     <nav class="navbar">
         <div class="container-fluid">
-          <span class="navbar-brand mb-0 h1 text-dark">Gestion Notas</span>
-          <ul class="nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link text-dark border-bottom active" aria-current="page" [routerLink]="'/author/notes'">Notas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark"  href="#"  data-tooltip="No estás autorizado" [ngClass]="{'disabled': !canUser}" id="link_user">Usuarios</a>
-            </li>
-          </ul>
+          <span class="navbar-brand mb-0 h1">Gestion Notas</span>
           <button type="button" class="btn btn-outline-success" (click)="logoutUser()">Sign off</button>
         </div>
       </nav>
@@ -17,18 +9,18 @@
         <div class="mb-3" id="from-container">
             <label for="exampleFormControlInput1" class="form-label">Titulo</label>
             <input type="text" class="form-control" id="FormControlInput1" placeholder="Título de la nota" [(ngModel)]="tituloInputValue">
-            <div class="select">
-                <select class="status-select" [(ngModel)]="userSelectValue">
-                  <option class="optionuser" *ngFor="let users of user" [value]="users.identificador">{{ users.nombre }} Rol:{{users.rol}}</option>
-                </select>          
-              </div>              
+            <div class="select" [ngStyle]="getStatusStyles(note.Estatus)" >
+              <select [(ngModel)]="estadoSelectValue"  class="status-select" [ngStyle]="getStatusStyles(note.Estatus)">
+                <option *ngFor="let estado of states" [value]="estado.id" class="optionstatus" [ngStyle]="getStatusStyles(estado.id)">{{ estado.nombre }}</option>
+              </select>          
+            </div>            
           </div>
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Contenido</label>
             <textarea class="form-control" id="FormControlTextarea1" rows="3" [(ngModel)]="contenidoTextareaValue">{{note.descripcion}}</textarea>
           </div>
           <div class="mb-3">
-            <button class="button_guardar" (click)="createnote()">Crear</button>
+            <button class="button_guardar" (click)="Updatenote()">Guardar</button>
             <button  class="button_regresar"  [routerLink]="'/owner/notes'">Regresar</button>
           </div>
       </div>
