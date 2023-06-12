@@ -21,4 +21,3 @@ ng serve
 ### Api utilizada en este Proyecto 
 Este proyecto de Angular consume una API para gestionar las notas. Puedes encontrar el repositorio de la API [aquí](https://github.com/Mgodoyd/ApiGestionNotas.git). Asegúrate de seguir las instrucciones proporcionadas en ese repositorio para configurar y ejecutar la API correctamente antes de ejecutar este proyecto de Angular.
 
-Recuerda que estos son solo los pasos básicos para ejecutar el proyecto de Angular. Dependiendo de las características y requerimientos de tu proyecto, es posible que necesites realizar configuraciones adicionales o utilizar comandos específicos.
