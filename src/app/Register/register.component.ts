@@ -99,9 +99,9 @@ import { User } from "../Models/User";
 
         private isValidForm(): boolean { // Comprobar si el formulario es válido
             return this.name !=='' && this.email !== '' && this.password !== '' ;
-          }
+          } 
   }
-
+ 
   
 
   

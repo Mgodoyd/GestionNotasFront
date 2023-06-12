@@ -23,7 +23,6 @@
       <nav class="navbar_">
       </nav>
       <div class="container-cards">
-          
                 <table class="table">
                     <thead class="table-color">
                       <tr>
@@ -32,13 +31,13 @@
                         <th>Fecha Creación</th>
                         <th>Fecha Actualización</th>
                       </tr>
-                    </thead>
-                    <tbody *ngFor="let states of filteredNotes">
-                      <tr>
-                        <td>{{states.identificador}}</td>
-                        <td>{{states.nombre}}</td>     
-                        <td>{{states.fecha_creacion}}</td>    
-                        <td>{{states.fecha_actualizacion}}</td>                      
-                    </tbody>
-                  </table>
+                 </thead>
+                <tbody *ngFor="let states of filteredNotes">
+                    <tr>
+                      <td>{{states.identificador}}</td>
+                      <td>{{states.nombre}}</td>     
+                      <td>{{states.fecha_creacion}}</td>    
+                      <td>{{states.fecha_actualizacion}}</td>                      
+           </tbody>
+     </table>
 </div>

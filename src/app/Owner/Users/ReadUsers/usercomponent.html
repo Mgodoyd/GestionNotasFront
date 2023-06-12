@@ -61,8 +61,7 @@
                             <button [disabled]="!canUpdate" data-tooltip="No estás autorizado" class="button_update" [ngClass]="{'disabled': !canUpdate}" [routerLink]="'/ownerupdateuser/' + user.identificador"  >Actualizar</button>
                             <button [disabled]="!canDelete" data-tooltip="No estás autorizado" class="button_delete" (click)="deleteUser(user.identificador)"[ngClass]="{'disabled': !canDelete}">Eliminar</button>
                           </td>                      
-                        </tr>
-                      </tbody>
-                      
-                    </table>
+                      </tr>
+               </tbody>
+        </table>
   </div>
